@@ -42,7 +42,7 @@ project-pulse update        # 明确刷新
 project-pulse inspect --json
 ```
 
-在 Codex 中使用以下短指令可以更稳定地触发：
+在 Codex 中只保留一个主要的手动入口：
 
 ```text
 project pulse
@@ -50,7 +50,7 @@ project pulse init
 project pulse update
 ```
 
-需要显式调用 Skill 时使用 `$project-pulse`。成功的 Project Pulse 输出会以 `PROJECT PULSE` 开头，并包含 `VCS`、`Workspace`、`Status`、`WORK`、`CHECKS`、`READINESS` 和 `NEXT`。推荐使用这些固定指令，不要使用可能被项目专用 Skill 接管的模糊指令，例如 `refresh status`。
+`project pulse` 是日常手动调用命令。需要显式调用 Skill 时使用 `$project-pulse`。成功的 Project Pulse 输出会以 `PROJECT PULSE` 开头，并包含 `VCS`、`Workspace`、`Status`、`WORK`、`CHECKS`、`READINESS` 和 `NEXT`。v0.1 没有 Stop Hook，也没有自动生命周期调用，必须由用户手动执行。推荐使用这些固定指令，不要使用可能被项目专用 Skill 接管的模糊指令，例如 `refresh status`。
 
 如果命令不在 PATH 中，可以使用 `python3 -m project_pulse inspect`。macOS Python 3.9 常见用户级命令目录是 `$HOME/Library/Python/3.9/bin`。
 
