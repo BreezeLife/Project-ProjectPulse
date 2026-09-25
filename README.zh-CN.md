@@ -42,7 +42,7 @@ project-pulse update        # 明确刷新
 project-pulse inspect --json
 ```
 
-在 Codex 中使用以下短指令可以更稳定地触发：
+在 Codex 中只保留一个主要的手动入口：
 
 ```text
 project pulse
@@ -50,7 +50,22 @@ project pulse init
 project pulse update
 ```
 
-需要显式调用 Skill 时使用 `$project-pulse`。成功的 Project Pulse 输出会以 `PROJECT PULSE` 开头，并包含 `VCS`、`Workspace`、`Status`、`WORK`、`CHECKS`、`READINESS` 和 `NEXT`。推荐使用这些固定指令，不要使用可能被项目专用 Skill 接管的模糊指令，例如 `refresh status`。
+`project pulse` 是日常手动调用命令。需要显式调用 Skill 时使用 `$project-pulse`。成功的 Project Pulse 输出会以 `PROJECT PULSE` 开头，并包含 `VCS`、`Workspace`、`Status`、`WORK`、`CHECKS`、`READINESS` 和 `NEXT`。可选的 Codex Stop Hook 也能在回合结束时自动进行只读检查。推荐使用固定指令，不要使用可能被项目专用 Skill 接管的模糊指令，例如 `refresh status`。
+
+### 可选的 Codex Stop Hook
+
+在 `~/.codex/config.toml` 中加入以下用户级配置，Codex 每次结束回合时会自动检查当前项目：
+
+```toml
+[[hooks.Stop]]
+[[hooks.Stop.hooks]]
+type = "command"
+command = "project-pulse-hook"
+timeout = 10
+statusMessage = "Checking Project Pulse"
+```
+
+Hook 从 stdin 读取 Codex Stop 事件，返回简短的 Project Pulse 状态；不运行测试或构建、不写入项目状态，也不阻止回合结束。手动 `project pulse` 仍可使用。更改配置后重启 Codex。
 
 如果命令不在 PATH 中，可以使用 `python3 -m project_pulse inspect`。macOS Python 3.9 常见用户级命令目录是 `$HOME/Library/Python/3.9/bin`。
 
@@ -102,7 +117,7 @@ python3 -m project_pulse inspect
 
 ## 路线图
 
-v0.1 提供通用 Skill、安全发现、Inspect、Init、Update、指纹、可移植状态、渲染器、CLI、安全测试和场景文档。后续版本可以增加更强的平台安全防护、Agent 适配器和显式 Verify 模式。Hooks 按设计不属于 v0.1。
+v0.1 提供通用 Skill、安全发现、Inspect、Init、Update、指纹、可移植状态、渲染器、CLI、安全测试和场景文档。可选 Codex Stop Hook 是适配器；后续版本可以增加更强的平台安全防护、其他 Agent 适配器和显式 Verify 模式。
 
 ## 许可证
 
