@@ -13,6 +13,7 @@ authors = [{name = "Project Pulse contributors"}]
 
 [project.scripts]
 project-pulse = "project_pulse.cli:main"
+project-pulse-hook = "project_pulse.hook:main"
 
 [tool.setuptools.packages.find]
 include = ["project_pulse*"]
