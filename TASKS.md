@@ -1,6 +1,7 @@
 # Tasks
 
 - [x] Establish v0.1 product and security boundaries.
-- [ ] Implement safe discovery, collection, state, rendering, persistence, and CLI.
-- [ ] Add tests across Git, non-Git, worktree, and hostile fixtures.
-- [ ] Package universal skill and validate distribution.
+- [x] Implement safe discovery, collection, state, rendering, persistence, and CLI.
+- [x] Add tests across Git, non-Git, and hostile fixtures.
+- [x] Package universal skill and validate distribution.
+- [ ] Configure a GitHub remote and publish the repository.
