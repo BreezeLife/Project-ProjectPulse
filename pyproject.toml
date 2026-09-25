@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project-pulse"
+version = "0.1.0"
+description = "Evidence-based, universal coding-agent project status"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+authors = [{name = "Project Pulse contributors"}]
+
+[project.scripts]
+project-pulse = "project_pulse.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["project_pulse*"]
