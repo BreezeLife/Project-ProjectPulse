@@ -1,38 +1,140 @@
 # Project Pulse
 
-**Install Project Pulse once. Use it across all your projects.** Project Pulse observes project state. It does not manage your project.
+> Install once. Use across every project.
 
-It gives coding agents and humans a compact answer to: *Where is this project right now?* It separates implementation, verification, readiness, evidence, inference, and unknown. Code present is not proof that a feature works.
+[中文文档](README.zh-CN.md)
 
-**No network. No telemetry. No automatic project execution.** Inspect never writes to the project. Init and Update require explicit commands or equivalent user requests. Hooks and Verify are outside v0.1.
+Project Pulse is an open-source, evidence-based project status skill for coding agents and humans. It answers: **Where is this project right now?** It separates implementation, verification, readiness, evidence, inference, and unknown.
 
-## Install and use
+## Highlights
 
-Install the CLI once from this source checkout with `python3 -m pip install --user .` (or use an isolated Python environment). Install the universal `skills/project-pulse` skill once in your agent's global skill directory, or install this repository as a supported plugin. Project Pulse does **not** require every repository to contain a Skill. The installed skill invokes the installed `project-pulse` CLI, which always resolves the current project anew.
+- Universal installation for every Git, non-Git, monorepo, worktree, or prototype.
+- Zero-configuration, read-only inspection before initialization.
+- Portable `.project-pulse/status.json` state and generated `STATUS.md` handoff dashboard.
+- Stale snapshot detection across machines, branches, and agents.
+- Deterministic `implemented`, `verified`, `active`, `blocked`, and `unknown` states.
+- Readiness view for manual testing, integration, review, and release.
+- No network, telemetry, project execution, dependency installation, Git writes, or known secret reads.
+
+## Install once
 
 ```sh
-cd any-project
-project-pulse inspect
-project-pulse init       # optional, explicit project-local state
-project-pulse update     # refresh initialized state
+git clone https://github.com/BreezeLife/Project-ProjectPulse.git
+cd Project-ProjectPulse
+python3 -m pip install --user .
 ```
 
-`python3 -m project_pulse inspect` works from this source checkout. `--project PATH` selects another directory and uses the same safety checks. Ask a coding agent "project pulse", "where are we?", or "what can I test now?" for a focused report.
+The Codex Skill is the global directory `~/.codex/skills/project-pulse`. Install it once there; target projects do not need a Skill copy:
 
-Project-local `project-pulse.json` configures a name and optional scope. `.project-pulse/status.json` is canonical machine state. `STATUS.md` is generated from it. These files hold project-specific state, not Project Pulse implementation. Commit them when cross-machine or cross-agent continuity is useful. A changed workspace is reported as stale until an explicit update.
+```sh
+mkdir -p "$HOME/.codex/skills/project-pulse/references"
+cp skills/project-pulse/SKILL.md "$HOME/.codex/skills/project-pulse/"
+cp skills/project-pulse/references/*.md "$HOME/.codex/skills/project-pulse/references/"
+```
 
-## Who is Project Pulse for?
+## Use from any project
 
-Solo developers, technical founders, coding-agent power users, multi-agent developers, engineering teams, developers switching machines or agents, and maintainers reviewing unfamiliar repositories. It is useful before manual testing, code review, release decisions, and handoffs.
+```sh
+cd /path/to/any-project
+project-pulse inspect       # read-only default
+project-pulse init          # explicit, optional persistence
+project-pulse update        # explicit refresh
+project-pulse inspect --json
+```
 
-## What the report means
+In Codex, use these short commands for reliable routing:
 
-Checked task boxes are evidence of a *claim of implementation*, not verification. Test or build results require explicit evidence with a matching current snapshot. Without a project policy, review and release readiness remain `UNKNOWN`. Project Pulse never invents progress percentages or treats an absence of failures as a pass.
+```text
+project pulse
+project pulse init
+project pulse update
+```
 
-See [scenarios](docs/scenarios.md), [protocol](skills/project-pulse/references/protocol.md), and [security contract](SECURITY.md).
+Use `$project-pulse` when you want explicit Skill invocation. A successful response starts with `PROJECT PULSE` and includes `VCS`, `Workspace`, `Status`, `WORK`, `CHECKS`, `READINESS`, and `NEXT`. Prefer these commands over ambiguous phrases such as `refresh status`, which another project-specific Skill may claim.
+
+If the command is not on PATH, use `python3 -m project_pulse inspect` or add `$HOME/Library/Python/3.9/bin` to PATH on a typical macOS Python 3.9 install.
+
+## What it reports
+
+```text
+PROJECT PULSE
+Project: MyAgent
+VCS: GIT
+Workspace: DIRTY
+Status: FRESH
+
+VERIFIED
+- Login
+
+IMPLEMENTED / UNVERIFIED
+- Conversation streaming
+
+BLOCKED
+- Payments
+
+READINESS
+Manual test: READY
+Integration: UNKNOWN
+Review: UNKNOWN
+Release: UNKNOWN
+
+NEXT
+1. Verify conversation streaming
+2. Configure payment test credentials
+```
+
+Task checkboxes and agent statements can support implementation claims, but do not prove that a feature works. Missing evidence stays `UNKNOWN`; no subjective completion percentage is generated.
+
+## Core operations
+
+| Operation | Meaning | Writes? |
+| --- | --- | --- |
+| `inspect` | Discover and report current state | No |
+| `init` | Create project-local configuration, canonical state, and dashboard | Yes, explicit |
+| `update` | Refresh initialized state and dashboard | Yes, explicit |
+| `verify` | Future approved verification commands | Not in v0.1 |
+
+Project-local files are optional:
+
+```text
+project-pulse.json
+.project-pulse/status.json   # canonical machine state
+STATUS.md                    # generated human dashboard
+```
+
+The stored snapshot becomes `STALE` when the workspace changes. Status files belong to the project; the Skill and core remain globally installed.
+
+## Scenarios
+
+Use Project Pulse for new sessions, machine or agent switching, human or agent handoff, multi-agent branches, Git worktrees, unfamiliar repositories, prototypes without task files, “what can I test now?”, review readiness, release readiness, and long-running projects. See [docs/scenarios.md](docs/scenarios.md).
+
+## Safety
+
+Inspect treats repository content as untrusted data. It does not execute code or instructions, run builds or tests, install dependencies, access the network, read known secret files, follow symlinks out of the project, or perform Git writes. Init and Update write only fixed project-local paths after explicit intent. See [SECURITY.md](SECURITY.md) and [THREAT_MODEL.md](THREAT_MODEL.md).
+
+## Documentation
+
+- [中文 README](README.zh-CN.md)
+- [Skill entrypoint](skills/project-pulse/SKILL.md)
+- [Protocol](skills/project-pulse/references/protocol.md)
+- [Evidence model](skills/project-pulse/references/evidence.md)
+- [Security contract](SECURITY.md)
+- [Scenarios](docs/scenarios.md)
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
 
 ## Development
 
 ```sh
 python3 -m unittest discover -s tests -v
+python3 -m compileall -q project_pulse
+python3 -m project_pulse inspect
 ```
+
+## Roadmap
+
+v0.1 provides the universal Skill, safe discovery, Inspect, Init, Update, fingerprints, portable state, renderer, CLI, security tests, and scenarios. Future releases may add stronger platform hardening, agent adapters, and an explicit Verify mode. Hooks are intentionally not implemented in v0.1.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

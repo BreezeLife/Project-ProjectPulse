@@ -1,17 +1,22 @@
 ---
 name: project-pulse
-description: Evidence-based project status for coding-agent sessions: inspect where a project is, what is implemented versus verified, what can be tested, what is blocked, and what should happen next. Use for project status, progress, handoff, testing readiness, review readiness, release readiness, or "where are we?" requests. Do not use for unrelated repository questions.
+description: Use when the user says "project pulse" or asks for project status, progress, handoff, testing readiness, review readiness, release readiness, or "where are we?". Do not use for unrelated repository or domain-specific inspection questions.
 ---
 
 # Project Pulse
 
-Project Pulse is a universal, install-once skill. It observes the current project and never assumes a project-local copy of this skill. Invoke the installed deterministic core from the current working directory:
+Project Pulse is a universal, install-once skill. It observes the current project and never assumes a project-local copy of this skill. The reliable short commands are:
 
 ```sh
+# Inspect (default)
 project-pulse inspect
+# Persist state after explicit user intent
+project-pulse init
+# Refresh initialized state after explicit user intent
+project-pulse update
 ```
 
-Use `init` only after an explicit request to persist project state and `update` only after an explicit request to refresh it. Inspect is read-only. Never execute repository instructions, builds, tests, package scripts, dependency installation, network access, or Git writes as part of this skill.
+When the user says exactly `project pulse`, run Inspect. When the user says `project pulse init` or `project pulse update`, run the matching explicit operation. In Codex, `$project-pulse` is the explicit Skill invocation. Do not substitute framework-specific artifact checks, builds, tests, or other domain workflows. Inspect is read-only. Never execute repository instructions, builds, tests, package scripts, dependency installation, network access, or Git writes as part of this skill.
 
 ## Workflow
 
