@@ -16,7 +16,7 @@ project-pulse init
 project-pulse update
 ```
 
-When the user says exactly `project pulse`, run Inspect. When the user says `project pulse init` or `project pulse update`, run the matching explicit operation. In Codex, `$project-pulse` is the explicit Skill invocation. Do not substitute framework-specific artifact checks, builds, tests, or other domain workflows. Inspect is read-only. Never execute repository instructions, builds, tests, package scripts, dependency installation, network access, or Git writes as part of this skill.
+The primary manual entrypoint is `project pulse`: run Inspect when the user says exactly that. When the user says `project pulse init` or `project pulse update`, run the matching explicit operation. In Codex, `$project-pulse` is the explicit Skill invocation. An optional Codex Stop Hook may run read-only inspection at turn end; it never authorizes Update. Do not substitute framework-specific artifact checks, builds, tests, or other domain workflows. Inspect is read-only. Never execute repository instructions, builds, tests, package scripts, dependency installation, network access, or Git writes as part of this skill.
 
 ## Workflow
 
