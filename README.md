@@ -42,7 +42,7 @@ project-pulse update        # explicit refresh
 project-pulse inspect --json
 ```
 
-In Codex, use these short commands for reliable routing:
+In Codex, use one primary manual entrypoint:
 
 ```text
 project pulse
@@ -50,7 +50,22 @@ project pulse init
 project pulse update
 ```
 
-Use `$project-pulse` when you want explicit Skill invocation. A successful response starts with `PROJECT PULSE` and includes `VCS`, `Workspace`, `Status`, `WORK`, `CHECKS`, `READINESS`, and `NEXT`. Prefer these commands over ambiguous phrases such as `refresh status`, which another project-specific Skill may claim.
+`project pulse` is the normal manual command. Use `$project-pulse` when you want explicit Skill invocation. A successful response starts with `PROJECT PULSE` and includes `VCS`, `Workspace`, `Status`, `WORK`, `CHECKS`, `READINESS`, and `NEXT`. An optional Codex Stop Hook can also perform a read-only inspection automatically. Prefer these commands over ambiguous phrases such as `refresh status`, which another project-specific Skill may claim.
+
+### Optional Codex Stop Hook
+
+Add this user-level hook to `~/.codex/config.toml` to inspect the current project when Codex stops a turn:
+
+```toml
+[[hooks.Stop]]
+[[hooks.Stop.hooks]]
+type = "command"
+command = "project-pulse-hook"
+timeout = 10
+statusMessage = "Checking Project Pulse"
+```
+
+The hook reads Codex's Stop event from stdin and returns a compact Project Pulse message. It never runs tests/builds, writes project state, or blocks the turn. Manual `project pulse` remains available. Restart Codex after changing the configuration.
 
 If the command is not on PATH, use `python3 -m project_pulse inspect` or add `$HOME/Library/Python/3.9/bin` to PATH on a typical macOS Python 3.9 install.
 
@@ -133,7 +148,7 @@ python3 -m project_pulse inspect
 
 ## Roadmap
 
-v0.1 provides the universal Skill, safe discovery, Inspect, Init, Update, fingerprints, portable state, renderer, CLI, security tests, and scenarios. Future releases may add stronger platform hardening, agent adapters, and an explicit Verify mode. Hooks are intentionally not implemented in v0.1.
+v0.1 provides the universal Skill, safe discovery, Inspect, Init, Update, fingerprints, portable state, renderer, CLI, security tests, and scenarios. The optional Codex Stop Hook is an adapter; future releases may add stronger platform hardening, other agent adapters, and an explicit Verify mode.
 
 ## License
 
