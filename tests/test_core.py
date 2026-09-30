@@ -1,3 +1,4 @@
+import json
 import subprocess
 import tempfile
 import unittest
@@ -5,6 +6,7 @@ from pathlib import Path
 
 from project_pulse.cli import inspect, main
 from project_pulse.paths import safe_child
+from project_pulse.renderer import render
 
 
 class PulseTests(unittest.TestCase):
@@ -68,3 +70,88 @@ class PulseTests(unittest.TestCase):
             self.assertEqual(login["derived"], "implemented_unverified")
         finally:
             temporary.cleanup()
+
+    def test_priority_marker_keeps_task_identity_and_historical_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            tasks = root / "TASKS.md"
+            tasks.write_text("- [x] Login\n", encoding="utf-8")
+            self.assertEqual(main(["init", "--project", str(root)]), 0)
+            state_path = root / ".project-pulse/status.json"
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+            original_id = saved["items"][0]["id"]
+            saved["items"][0]["verification"] = "passed"
+            saved["items"][0]["evidence"].append(
+                {"type": "human", "fingerprint": saved["fingerprint"]})
+            state_path.write_text(json.dumps(saved), encoding="utf-8")
+
+            tasks.write_text("- [x] [P0] Login\n", encoding="utf-8")
+            _, report, _ = inspect(root)
+
+        self.assertEqual(len(report["items"]), 1)
+        self.assertEqual(report["items"][0]["id"], original_id)
+        self.assertEqual(report["items"][0]["title"], "[P0] Login")
+        self.assertTrue(any(record.get("type") == "human" for record in report["items"][0]["evidence"]))
+        self.assertEqual(report["items"][0]["verification"], "not_run")
+
+    def test_current_test_evidence_appears_in_report(self):
+        temporary, root = self.make_project()
+        try:
+            self.assertEqual(main(["init", "--project", str(root)]), 0)
+            status_path = root / ".project-pulse/status.json"
+            state = json.loads(status_path.read_text(encoding="utf-8"))
+            login = next(item for item in state["items"] if item["title"] == "Login")
+            login["verification"] = "passed"
+            login["evidence"].extend({"type": kind, "fingerprint": state["fingerprint"]}
+                                     for kind in ("build", "test", "human"))
+            status_path.write_text(json.dumps(state), encoding="utf-8")
+
+            _, report, _ = inspect(root)
+            self.assertEqual(report["status"], "FRESH")
+            self.assertEqual(report.get("checks", {}).get("build"), "PRESENT")
+            self.assertEqual(report.get("checks", {}).get("tests"), "PRESENT")
+            self.assertEqual(report.get("checks", {}).get("manual_test"), "PRESENT")
+            self.assertIn("Build        PRESENT", render(report, language="en"))
+            self.assertIn("Tests        PRESENT", render(report, language="en"))
+            self.assertIn("Manual test  PRESENT", render(report, language="en"))
+            self.assertIn("EVIDENCE  Build PRESENT · Tests PRESENT · Manual test PRESENT",
+                          render(report, compact=True, language="en"))
+        finally:
+            temporary.cleanup()
+
+    def test_stale_test_evidence_is_not_current(self):
+        temporary, root = self.make_project()
+        try:
+            self.assertEqual(main(["init", "--project", str(root)]), 0)
+            status_path = root / ".project-pulse/status.json"
+            state = json.loads(status_path.read_text(encoding="utf-8"))
+            login = next(item for item in state["items"] if item["title"] == "Login")
+            login["verification"] = "passed"
+            login["evidence"].extend({"type": kind, "fingerprint": state["fingerprint"]}
+                                     for kind in ("build", "test", "human"))
+            status_path.write_text(json.dumps(state), encoding="utf-8")
+            (root / "README.md").write_text("changed", encoding="utf-8")
+
+            _, report, _ = inspect(root)
+            self.assertEqual(report["status"], "STALE")
+            self.assertEqual(report.get("checks", {}).get("build"), "UNKNOWN")
+            self.assertEqual(report.get("checks", {}).get("tests"), "UNKNOWN")
+            self.assertEqual(report.get("checks", {}).get("manual_test"), "UNKNOWN")
+            self.assertIn("Tests        UNKNOWN", render(report, language="en"))
+        finally:
+            temporary.cleanup()
+
+    def test_init_writes_safe_markdown_dashboard(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "TASKS.md").write_text(
+                "- [x] [Open](https://example.com) | <script>\n- [ ] Payments\n", encoding="utf-8")
+            self.assertEqual(main(["init", "--project", str(root)]), 0)
+            dashboard = (root / "STATUS.md").read_text(encoding="utf-8")
+
+        self.assertTrue(dashboard.startswith("# Project Pulse"))
+        self.assertIn("| State | Count | Chart |", dashboard)
+        self.assertIn("◐ Needs verification", dashboard)
+        self.assertIn("█", dashboard)
+        self.assertNotIn("[Open](https://example.com)", dashboard)
+        self.assertNotIn("<script>", dashboard)

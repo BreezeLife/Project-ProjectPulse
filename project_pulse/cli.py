@@ -1,4 +1,4 @@
-"""Read-only inspect and explicit init/update entrypoints."""
+"""Project inspection and persistence entrypoints."""
 
 import argparse
 import json
@@ -8,9 +8,9 @@ from .collector import collect
 from .config import load_config
 from .discovery import discover
 from .fingerprint import fingerprint
-from .renderer import render
+from .renderer import render, render_markdown
 from .schema import load_status
-from .state import normalize_item, readiness
+from .state import evidence_checks, normalize_item, readiness
 from .writer import persist
 
 
@@ -29,7 +29,16 @@ def inspect(project=None):
             previous = by_id.get(item["id"])
             if previous:
                 item["verification"] = previous["verification"]
-                item["evidence"] = (item["evidence"] + previous["evidence"])[:20]
+                evidence = []
+                for records in (item["evidence"], previous["evidence"]):
+                    if not isinstance(records, list):
+                        continue
+                    for record in records:
+                        if record not in evidence:
+                            evidence.append(record)
+                        if len(evidence) == 20:
+                            break
+                item["evidence"] = evidence
                 item["blocked"] = previous["blocked"]
                 item["deferred"] = previous["deferred"]
                 del by_id[item["id"]]
@@ -38,10 +47,26 @@ def inspect(project=None):
     report = {"project": config.get("name") or root.name, "vcs": workspace["vcs"],
               "branch": workspace["branch"], "head": workspace["head"], "workspace": workspace["workspace"],
               "status": status, "fingerprint": snapshot, "known_files": collection["known_files"],
-              "items": items, "readiness": readiness(items), "entry_limit_reached": collection["entry_limit_reached"]}
+              "items": items, "checks": evidence_checks(items, snapshot),
+              "readiness": readiness(items), "entry_limit_reached": collection["entry_limit_reached"]}
     if status == "STALE":
+        report["checks"] = {key: "UNKNOWN" for key in report["checks"]}
         report["readiness"] = {key: "UNKNOWN" for key in report["readiness"]}
     return root, report, raw
+
+
+def save_report(root, report, raw, *, create_config=True):
+    """Save an inspected report using the guarded project-local writer."""
+    if report["status"] == "INVALID":
+        raise ValueError("invalid Project Pulse state; repair it before saving")
+    state = {"schema_version": 1, "project": report["project"], "fingerprint": report["fingerprint"],
+             "vcs": report["vcs"], "branch": report["branch"], "head": report["head"],
+             "items": [{key: item[key] for key in ("id", "title", "implementation", "verification", "evidence", "blocked", "deferred")}
+                       for item in report["items"]]}
+    saved_report = dict(report, status="FRESH")
+    persist(root, state, render_markdown(saved_report), expected_raw=raw,
+            initialize=raw is None, create_config=create_config)
+    return saved_report
 
 
 def main(argv=None):
@@ -57,12 +82,7 @@ def main(argv=None):
         if args.operation == "update" and raw is None:
             raise ValueError("project is not initialized; use init")
         if args.operation != "inspect":
-            state = {"schema_version": 1, "project": report["project"], "fingerprint": report["fingerprint"],
-                     "vcs": report["vcs"], "branch": report["branch"], "head": report["head"],
-                     "items": [{key: item[key] for key in ("id", "title", "implementation", "verification", "evidence", "blocked", "deferred")}
-                               for item in report["items"]]}
-            report["status"] = "FRESH"
-            persist(root, state, render(report), expected_raw=raw, initialize=args.operation == "init")
+            report = save_report(root, report, raw)
         if args.json:
             print(json.dumps(report, indent=2))
         else:

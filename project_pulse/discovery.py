@@ -16,7 +16,7 @@ def git_read(directory, *args):
                               stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                               timeout=3, check=False)
         if done.returncode == 0 and len(done.stdout) <= 256 * 1024:
-            return done.stdout.decode("utf-8", "replace").strip()
+            return done.stdout.decode("utf-8", "replace").rstrip("\r\n")
     except (OSError, subprocess.TimeoutExpired):
         pass
     return None
@@ -33,8 +33,11 @@ def discover(value=None):
     head = git_read(root, "rev-parse", "--verify", "HEAD") if git else None
     porcelain = git_read(root, "status", "--porcelain=v1", "--untracked-files=normal") if git else None
     if porcelain is not None:
-        lines = [line for line in porcelain.splitlines() if line[3:] not in
-                 ("STATUS.md", "project-pulse.json", ".project-pulse/")]
+        def generated_status(line):
+            path = line[3:]
+            return path in ("STATUS.md", "project-pulse.json", ".project-pulse/") or path.startswith(".project-pulse/")
+
+        lines = [line for line in porcelain.splitlines() if not generated_status(line)]
         porcelain = "\n".join(lines)
     return {"root": root, "vcs": "git" if git else "none", "branch": branch or None,
             "head": head or None, "workspace": "DIRTY" if porcelain else "CLEAN" if porcelain is not None else "UNKNOWN"}

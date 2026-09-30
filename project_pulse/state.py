@@ -3,6 +3,7 @@
 IMPLEMENTATION = {"unknown", "not_started", "in_progress", "implemented"}
 VERIFICATION = {"unknown", "not_run", "partial", "passed", "failed", "not_applicable"}
 VERIFY_EVIDENCE = {"build", "test", "human"}
+CHECK_TYPES = {"build": "build", "test": "tests", "human": "manual_test"}
 
 
 def normalize_item(item, current_fingerprint):
@@ -53,3 +54,18 @@ def readiness(items):
     elif any(item["derived"] == "blocked" for item in items):
         manual = "NOT READY"
     return {"manual_test": manual, "integration": "UNKNOWN", "review": "UNKNOWN", "release": "UNKNOWN"}
+
+
+def evidence_checks(items, current_fingerprint):
+    """Show which current verification evidence types are present."""
+    checks = {"build": "UNKNOWN", "tests": "UNKNOWN", "manual_test": "UNKNOWN"}
+    for item in items:
+        if item["derived"] != "verified":
+            continue
+        for record in item["evidence"]:
+            if not isinstance(record, dict) or record.get("fingerprint") != current_fingerprint:
+                continue
+            kind = record.get("type")
+            if isinstance(kind, str) and kind in CHECK_TYPES:
+                checks[CHECK_TYPES[kind]] = "PRESENT"
+    return checks

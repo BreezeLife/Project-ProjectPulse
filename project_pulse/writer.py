@@ -21,7 +21,7 @@ def _atomic(path, content):
             os.unlink(temporary)
 
 
-def persist(root, data, markdown, expected_raw=None, initialize=False):
+def persist(root, data, markdown, expected_raw=None, initialize=False, create_config=True):
     directory = safe_child(root, ".project-pulse")
     config = safe_child(root, "project-pulse.json")
     status = safe_child(root, ".project-pulse/status.json")
@@ -46,7 +46,7 @@ def persist(root, data, markdown, expected_raw=None, initialize=False):
         current = status.read_text(encoding="utf-8") if status.exists() else None
         if current != expected_raw:
             raise ValueError("status changed concurrently; inspect and retry")
-        if initialize and not config.exists():
+        if initialize and create_config and not config.exists():
             _atomic(config, json.dumps({"schema_version": 1, "name": root.name}, indent=2) + "\n")
         _atomic(status, json.dumps(data, indent=2, sort_keys=True) + "\n")
         _atomic(dashboard, markdown)

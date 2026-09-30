@@ -4,6 +4,7 @@ import hashlib
 import re
 
 from .paths import read_text, root_entries
+from .priority import without_marker
 from .redact import display
 
 COMMON = {"AGENTS.md", "PROJECT.md", "TASKS.md", "STATUS.md", "ROADMAP.md", "TODO.md", "WORKLOG.md", "MEMORY.md", "README.md", "CONTRIBUTING.md", "package.json", "pyproject.toml", "Cargo.toml", "go.mod", "pom.xml", "build.gradle", "Makefile"}
@@ -26,7 +27,7 @@ def collect(root):
             title = display(match.group(2), 160)
             if not title:
                 continue
-            identity = hashlib.sha256((name + ":" + title.casefold()).encode()).hexdigest()[:16]
+            identity = hashlib.sha256((name + ":" + without_marker(title).casefold()).encode()).hexdigest()[:16]
             items.append({"id": identity, "title": title, "implementation": "implemented" if match.group(1).strip() else "not_started",
                           "verification": "not_run", "evidence": [{"type": "task", "source": name, "line": line_number}],
                           "blocked": False, "deferred": False})
