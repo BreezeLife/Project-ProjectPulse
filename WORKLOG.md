@@ -36,3 +36,4 @@
 - Reinstalled after lifting the full-detail cap; an installed-command check with 25 tasks confirmed the five-item Focus summary and all 25 task details remain visible.
 - Prepared GitHub synchronization: added rendered Focus-table examples to both READMEs and clarified that each machine installs once from the repository root. Fetched the remote and confirmed its tree matches the local committed baseline despite divergent commit histories.
 - Committed the dashboard, Stop Hook, localization, priority, test, and documentation changes; merged the divergent remote history while preserving the tested file tree, then pushed GitHub `master` through merge commit `74efcee`.
+- Added matching English and Simplified Chinese SVG quick-start infographics to the READMEs. Each shows global installation, use in any project, dashboard signals, and the optional Stop Hook's limited write scope. The assets are generated from one dependency-free script and checked as rendered images.

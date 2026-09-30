@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1020" viewBox="0 0 1280 1020" role="img" aria-labelledby="title description" xml:lang="en">
+<title id="title">Project Pulse — Your project, at a glance</title>
+<desc id="description">A three-step guide to install Project Pulse once, use it from any project in Codex, read four dashboard signals, and optionally enable the Stop Hook.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101B30"/><stop offset="1" stop-color="#07101D"/></linearGradient><linearGradient id="accent"><stop stop-color="#51E3D4"/><stop offset="1" stop-color="#68B7FF"/></linearGradient></defs>
+<rect width="1280" height="1020" fill="url(#bg)"/>
+<circle cx="1150" cy="90" r="260" fill="#17334B" opacity=".3"/>
+<circle cx="74" cy="950" r="230" fill="#17334B" opacity=".16"/>
+<rect x="40" y="42" width="10" height="23" rx="5" fill="#51E3D4"/>
+<rect x="58" y="49" width="10" height="16" rx="5" fill="#68B7FF"/>
+<rect x="76" y="35" width="10" height="30" rx="5" fill="#F5C777"/>
+<text x="105" y="58" fill="#9CB8CA" font-size="18" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="2">PROJECT PULSE  /  QUICK GUIDE</text>
+<rect x="1052" y="34" width="188" height="40" rx="20" fill="#17334B" stroke="#315C6D" stroke-width="1"/>
+<text x="1146" y="61" fill="#BEE9E8" font-size="16" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">ENGLISH GUIDE</text>
+<text x="40" y="133" fill="#F5F8F9" font-size="50" font-weight="760" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Your project, at a glance</text>
+<text x="42" y="172" fill="#AFC6D0" font-size="23" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Install once  ·  ask for status  ·  follow the evidence</text>
+<rect x="40" y="197" width="1200" height="2" rx="0" fill="#294156"/>
+<text x="40" y="235" fill="#51E3D4" font-size="19" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.5">01  GET STARTED</text>
+<rect x="40" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="64" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="91" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">01</text>
+<text x="64" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Install once</text>
+<text x="64" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >From this repository root</text>
+<rect x="64" y="418" width="338" height="53" rx="10" fill="#0B1728"/>
+<text x="79" y="452" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >python3 -m pip install --user .</text>
+<text x="64" y="508" fill="#A7BFCB" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Copy the Skill to ~/.codex/skills/</text>
+<rect x="447" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="471" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="498" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">02</text>
+<text x="471" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Open any project</text>
+<text x="471" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Git repository or plain folder</text>
+<rect x="471" y="418" width="338" height="53" rx="10" fill="#0B1728"/>
+<text x="486" y="452" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >cd /path/to/project</text>
+<text x="471" y="508" fill="#A7BFCB" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >No per-project installation</text>
+<rect x="854" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="878" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="905" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">03</text>
+<text x="878" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Ask Codex</text>
+<text x="878" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >In the desktop app or CLI</text>
+<rect x="878" y="411" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="435" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse</text>
+<text x="1203" y="434" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">inspect</text>
+<rect x="878" y="450" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="474" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse init</text>
+<text x="1203" y="473" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">first save</text>
+<rect x="878" y="489" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="513" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse update</text>
+<text x="1203" y="512" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">refresh</text>
+<rect x="428" y="371" width="18" height="32" rx="9" fill="#1E4253"/>
+<text x="437" y="394" fill="#5DE3D7" font-size="27" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">›</text>
+<rect x="835" y="371" width="18" height="32" rx="9" fill="#1E4253"/>
+<text x="844" y="394" fill="#5DE3D7" font-size="27" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">›</text>
+<text x="40" y="579" fill="#51E3D4" font-size="19" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.5">02  UNDERSTAND THE DASHBOARD</text>
+<rect x="40" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="62" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >01</text>
+<text x="62" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Snapshot</text>
+<text x="62" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >FRESH / STALE</text>
+<text x="62" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >See when a saved status no longer</text>
+<text x="62" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >matches the workspace.</text>
+<rect x="345" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="367" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >02</text>
+<text x="367" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Tasks + focus</text>
+<text x="367" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >P0 → P3</text>
+<text x="367" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Exact counts, short bars, and</text>
+<text x="367" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >ranked next tasks.</text>
+<rect x="650" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="672" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >03</text>
+<text x="672" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Evidence</text>
+<text x="672" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >PRESENT / UNKNOWN</text>
+<text x="672" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Build, test, and manual proof;</text>
+<text x="672" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >missing proof stays unknown.</text>
+<rect x="955" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="977" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >04</text>
+<text x="977" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Readiness</text>
+<text x="977" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >4 checks</text>
+<text x="977" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Manual, integration, review,</text>
+<text x="977" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >and release readiness.</text>
+<rect x="40" y="850" width="1200" height="118" rx="17" fill="#1A3947" stroke="#347B82" stroke-width="1"/>
+<rect x="40" y="850" width="8" height="118" rx="4" fill="url(#accent)"/>
+<text x="66" y="882" fill="#6AEBDE" font-size="16" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.4">OPTIONAL AUTO SAVE</text>
+<text x="66" y="918" fill="#F4F8F9" font-size="25" font-weight="680" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Trust the Stop Hook in Settings → Hooks.</text>
+<text x="66" y="949" fill="#B7D0D5" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Each turn updates only .project-pulse/status.json and STATUS.md.</text>
+<text x="40" y="996" fill="#91AEBB" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Inspect is read-only. Init and update save only when requested.</text>
+</svg>

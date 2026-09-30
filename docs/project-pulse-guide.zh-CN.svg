@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1020" viewBox="0 0 1280 1020" role="img" aria-labelledby="title description" xml:lang="zh-CN">
+<title id="title">Project Pulse — 一眼看清项目进度</title>
+<desc id="description">Project Pulse 三步使用指南：一次安装、在任意项目的 Codex 中调用、查看四类仪表板信号，并可选启用 Stop Hook。</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101B30"/><stop offset="1" stop-color="#07101D"/></linearGradient><linearGradient id="accent"><stop stop-color="#51E3D4"/><stop offset="1" stop-color="#68B7FF"/></linearGradient></defs>
+<rect width="1280" height="1020" fill="url(#bg)"/>
+<circle cx="1150" cy="90" r="260" fill="#17334B" opacity=".3"/>
+<circle cx="74" cy="950" r="230" fill="#17334B" opacity=".16"/>
+<rect x="40" y="42" width="10" height="23" rx="5" fill="#51E3D4"/>
+<rect x="58" y="49" width="10" height="16" rx="5" fill="#68B7FF"/>
+<rect x="76" y="35" width="10" height="30" rx="5" fill="#F5C777"/>
+<text x="105" y="58" fill="#9CB8CA" font-size="18" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="2">PROJECT PULSE  /  快速指南</text>
+<rect x="1052" y="34" width="188" height="40" rx="20" fill="#17334B" stroke="#315C6D" stroke-width="1"/>
+<text x="1146" y="61" fill="#BEE9E8" font-size="16" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">简体中文指南</text>
+<text x="40" y="133" fill="#F5F8F9" font-size="50" font-weight="760" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >一眼看清项目进度</text>
+<text x="42" y="172" fill="#AFC6D0" font-size="23" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >全局安装一次  ·  随时查看状态  ·  根据证据推进</text>
+<rect x="40" y="197" width="1200" height="2" rx="0" fill="#294156"/>
+<text x="40" y="235" fill="#51E3D4" font-size="19" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.5">01  开始使用</text>
+<rect x="40" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="64" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="91" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">01</text>
+<text x="64" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >一次安装</text>
+<text x="64" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >在本仓库根目录执行</text>
+<rect x="64" y="418" width="338" height="53" rx="10" fill="#0B1728"/>
+<text x="79" y="452" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >python3 -m pip install --user .</text>
+<text x="64" y="508" fill="#A7BFCB" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >再将 Skill 复制到 ~/.codex/skills/</text>
+<rect x="447" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="471" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="498" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">02</text>
+<text x="471" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >打开任意项目</text>
+<text x="471" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Git 仓库或普通目录均可</text>
+<rect x="471" y="418" width="338" height="53" rx="10" fill="#0B1728"/>
+<text x="486" y="452" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >cd /path/to/project</text>
+<text x="471" y="508" fill="#A7BFCB" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >目标项目无需重复安装</text>
+<rect x="854" y="256" width="386" height="282" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<rect x="878" y="280" width="54" height="38" rx="19" fill="#264B57"/>
+<text x="905" y="306" fill="#64E4D7" font-size="20" font-weight="750" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" text-anchor="middle">03</text>
+<text x="878" y="361" fill="#F3F7F8" font-size="29" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >在 Codex 中调用</text>
+<text x="878" y="395" fill="#B5CBD4" font-size="21" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >桌面版或 CLI 输入</text>
+<rect x="878" y="411" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="435" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse</text>
+<text x="1203" y="434" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">查看</text>
+<rect x="878" y="450" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="474" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse init</text>
+<text x="1203" y="473" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">首次保存</text>
+<rect x="878" y="489" width="338" height="34" rx="8" fill="#0B1728"/>
+<text x="889" y="513" fill="#9BEEE2" font-size="18" font-weight="500" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >project pulse update</text>
+<text x="1203" y="512" fill="#A7BFCB" font-size="16" font-weight="600" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="end">刷新</text>
+<rect x="428" y="371" width="18" height="32" rx="9" fill="#1E4253"/>
+<text x="437" y="394" fill="#5DE3D7" font-size="27" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">›</text>
+<rect x="835" y="371" width="18" height="32" rx="9" fill="#1E4253"/>
+<text x="844" y="394" fill="#5DE3D7" font-size="27" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" text-anchor="middle">›</text>
+<text x="40" y="579" fill="#51E3D4" font-size="19" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.5">02  看懂仪表板</text>
+<rect x="40" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="62" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >01</text>
+<text x="62" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >快照</text>
+<text x="62" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >FRESH / STALE</text>
+<text x="62" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >工作区发生变化后，</text>
+<text x="62" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >识别旧状态。</text>
+<rect x="345" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="367" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >02</text>
+<text x="367" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >任务与重点</text>
+<text x="367" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >P0 → P3</text>
+<text x="367" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >准确数量、短条形图，</text>
+<text x="367" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >以及按优先级排列的待办。</text>
+<rect x="650" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="672" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >03</text>
+<text x="672" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >验证证据</text>
+<text x="672" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >PRESENT / UNKNOWN</text>
+<text x="672" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >构建、测试、人工证据；</text>
+<text x="672" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >缺失时保持未知。</text>
+<rect x="955" y="600" width="285" height="226" rx="18" fill="#142438" stroke="#315064" stroke-width="1"/>
+<text x="977" y="636" fill="#5AA8BB" font-size="16" font-weight="700" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" >04</text>
+<text x="977" y="679" fill="#F3F7F8" font-size="25" font-weight="700" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >就绪度</text>
+<text x="977" y="718" fill="#74E6D8" font-size="20" font-weight="720" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >4 项检查</text>
+<text x="977" y="765" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >人工测试、集成、审查</text>
+<text x="977" y="791" fill="#B5CBD4" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >和发布就绪度。</text>
+<rect x="40" y="850" width="1200" height="118" rx="17" fill="#1A3947" stroke="#347B82" stroke-width="1"/>
+<rect x="40" y="850" width="8" height="118" rx="4" fill="url(#accent)"/>
+<text x="66" y="882" fill="#6AEBDE" font-size="16" font-weight="750" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" letter-spacing="1.4">可选自动保存</text>
+<text x="66" y="918" fill="#F4F8F9" font-size="25" font-weight="680" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >在 Codex 的「设置 → Hooks」中信任 Stop Hook。</text>
+<text x="66" y="949" fill="#B7D0D5" font-size="19" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >每回合仅更新 .project-pulse/status.json 与 STATUS.md。</text>
+<text x="40" y="996" fill="#91AEBB" font-size="17" font-weight="400" font-family="Inter,'SF Pro Display','PingFang SC','Noto Sans CJK SC',Arial,sans-serif" >Inspect 只读；init 和 update 仅在明确请求时保存。</text>
+</svg>

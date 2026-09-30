@@ -14,3 +14,4 @@
 - [x] Tighten the CLI and Markdown dashboards and localize their labels from the host language.
 - [x] Surface important task details in a ranked Focus section and support explicit priority markers.
 - [x] Sync the updated Skill and bilingual README to GitHub.
+- [x] Add localized infographic guides to the English and Chinese READMEs.

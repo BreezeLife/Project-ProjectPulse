@@ -6,6 +6,12 @@
 
 Project Pulse is an open-source, evidence-based project status skill for coding agents and humans. It answers: **Where is this project right now?** It separates implementation, verification, readiness, evidence, inference, and unknown.
 
+## Visual guide
+
+![Project Pulse infographic: install once, open any project, ask Codex, read the dashboard, and optionally enable automatic saving](docs/project-pulse-guide.en.svg)
+
+[Open the full-size infographic](docs/project-pulse-guide.en.svg). The commands and Stop Hook setup below provide the copyable steps.
+
 ## Highlights
 
 - Universal installation for every Git, non-Git, monorepo, worktree, or prototype.

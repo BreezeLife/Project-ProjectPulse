@@ -6,6 +6,12 @@
 
 Project Pulse 是一个开源、基于证据的项目状态 Skill，服务于 Coding Agent 和开发者。它回答：**这个项目现在进行到哪里了？** 它严格区分实现、验证、就绪度、证据、推断和未知。
 
+## 图解指南
+
+![Project Pulse 中文信息图：一次安装、打开任意项目、在 Codex 中调用、看懂仪表板，并可选启用自动保存](docs/project-pulse-guide.zh-CN.svg)
+
+[查看原尺寸信息图](docs/project-pulse-guide.zh-CN.svg)。下文提供可复制的安装命令和 Stop Hook 配置步骤。
+
 ## 核心能力
 
 - 一次安装，可用于任意 Git、非 Git、monorepo、worktree 或原型项目。
