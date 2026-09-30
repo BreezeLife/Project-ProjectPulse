@@ -17,3 +17,4 @@
 - [x] Add localized infographic guides to the English and Chinese READMEs.
 - [x] Connect the installed Project Pulse Skill to Claude Code's global skill directory and define its manual invocation.
 - [ ] After Claude Code login, verify `/project-pulse`, `/project-pulse init`, and `/project-pulse update` in a live session.
+- [x] Rewrite both READMEs as public Skill documentation with a tested machine-level install and clear evidence semantics.
