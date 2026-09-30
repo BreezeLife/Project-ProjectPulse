@@ -15,3 +15,5 @@
 - [x] Surface important task details in a ranked Focus section and support explicit priority markers.
 - [x] Sync the updated Skill and bilingual README to GitHub.
 - [x] Add localized infographic guides to the English and Chinese READMEs.
+- [x] Connect the installed Project Pulse Skill to Claude Code's global skill directory and define its manual invocation.
+- [ ] After Claude Code login, verify `/project-pulse`, `/project-pulse init`, and `/project-pulse update` in a live session.
